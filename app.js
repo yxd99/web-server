@@ -1,8 +1,15 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 const port = 8080;
-const server = http.createServer( (req, res) => {
-    res.write('Hello World.');
-    res.end();
+
+app.get('/', (req, res) => {
+  res.send('Hello world in express.');
 });
-server.listen(port);
-console.log('Server hosted in port ', port);
+
+app.get('*', (req, res) => {
+  res.send('404 | Page no found.');
+});
+
+app.listen(port, () => {
+  console.log(`Running in http://localhost:${port}`);
+});
